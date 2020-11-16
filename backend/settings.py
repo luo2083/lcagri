@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authorization.apps.AuthorizationConfig',
     'apis.apps.ApisConfig',
+    'django_crontab'
 ]
 
 MIDDLEWARE = [
@@ -190,3 +191,6 @@ CACHES = {
         'LOCATION': 'backend-cache'
     }
 }
+CRONJOBS = [
+    ('*/1 * * * *', 'cron.jobs.demo')
+]
