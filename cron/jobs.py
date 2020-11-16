@@ -73,7 +73,7 @@ def report_by_mail():
     content = statistics()
     content = '\r\n'.join(content)
     logger.info('End statistics data.')
-    receivers = ['3391217495@qq.com']
+    receivers = ['1354029556@qq.com']
     msg = MIMEText(content, 'plain', 'utf-8')
     msg['FROM'] = '【Django Backend】'
     msg['Subject'] = '【Django Service Performance Monitor】'
