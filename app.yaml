@@ -1,0 +1,31 @@
+published:
+  - app:
+      category: life
+      application: weather
+      name: 天气
+      published_date: 2020-11-10
+      url: /service/weather
+      desc: this is a weather app.
+  - app:
+      category: life
+      application: backup_image
+      name: 图片备份
+      published_date: 2020-11-10
+      url: /service/image
+      desc: this is a image app.
+
+  - app:
+      category: life
+      application: constellation
+      name: 星座运势
+      published_date: 2020-11-10
+      url: /service/constellation
+      desc: this is a constellation app.
+
+  - app:
+      category: life
+      application: joke
+      name: 每日笑话
+      published_date: 2020-11-10
+      url: /service/joke
+      desc: this is a joke app.
