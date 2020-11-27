@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authorization.apps.AuthorizationConfig',
     'apis.apps.ApisConfig',
-    'django_crontab'
+    'django_crontab',
     'ml.apps.MlConfig'
 ]
 
