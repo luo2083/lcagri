@@ -37,9 +37,9 @@ class UserView(View, CommonResponseMixin):
         data = {}
         data['focus'] = {}
         print('user.focus_cities is:', user.focus_cities)
-        print('user.focus_constellations is:', user.focus_constellations)
+        print('user.focus_cropIds is:', user.focus_cropIds)
         data['focus']['city'] = json.loads(user.focus_cities)
-        data['focus']['constellation'] = json.loads(user.focus_constellations)
+        data['focus']['cropId'] = json.loads(user.focus_cropIds)
         print('data is:', data)
         response = self.wrap_json_response(data=data, code=ReturnCode.SUCCESS)
         return JsonResponse(data=response,safe=False)
@@ -56,12 +56,12 @@ class UserView(View, CommonResponseMixin):
         received_body = eval(received_body)
 
         cities = received_body.get('city')
-        constellations = received_body.get('constellation')
+        cropIds = received_body.get('cropId')
         if cities == None: cities = []
-        if constellations == None: constellations = []
+        if cropIds == None: cropIds = []
 
         user.focus_cities = json.dumps(cities)
-        user.focus_constellations = json.dumps(constellations)
+        user.focus_cropIds = json.dumps(cropIds)
         user.save()
         message = 'modify user info success.'
         response = CommonResponseMixin.wrap_json_response(code=ReturnCode.SUCCESS, message=message)

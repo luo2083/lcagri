@@ -9,6 +9,6 @@ urlpatterns = [
     # path('imagetext', image.image_text),
     path('image', image.ImageView.as_view()),
     path('image/list', image.ImageListView.as_view()),
-    path('constellation', service.constellation),
+    path('cropId', service.cropId),
     path('joke', service.joke),
 ]

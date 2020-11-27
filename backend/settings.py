@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from . import evns
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4*1s(457-rhw1#q$fnmgq_$5rithd!#+tv&n4x@6et@^@^iib5'
+SECRET_KEY = evns.SECRET_KEY2
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'authorization.apps.AuthorizationConfig',
     'apis.apps.ApisConfig',
     'django_crontab'
+    'ml.apps.MlConfig'
 ]
 
 MIDDLEWARE = [
@@ -96,7 +98,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'backend1',
+        'NAME': 'backend',
         'USER': 'luo',
         'PASSWORD': '@klj905789',
         'HOST': '127.0.0.1',

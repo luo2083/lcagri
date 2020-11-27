@@ -9,23 +9,31 @@ def weather(city):
     api = "http://apis.juhe.cn/simpleWeather/query"
     params = '?city=%s&key=%s' %(city, key)
     url = api + params
-    print(url)
     response = requests.get(url=url)
+    print('juhe return response is:', response)
     json_data = json.loads(response.text)
-    print(json_data)
     result = json_data.get("result")
     realtime = result.get("realtime")
+    future = result.get("future")
+    print('juhe return future is:', future)
     response = dict()
-    response['city'] = result.get("city")
-    response['temperature'] = realtime.get('temperature')
-    response['humidity'] = realtime.get('humidity')
-    response['info'] = realtime.get('info')
-    response['wid'] = realtime.get('wid')
-    response['direct'] = realtime.get('direct')
-    response['power'] = realtime.get('power')
-    response['aqi'] = realtime.get('aqi')
+    response['realtime'] = dict()
+    response['realtime']['temperature'] = realtime.get('temperature')
+    response['realtime']['humidity'] = realtime.get('humidity')
+    response['realtime']['info'] = realtime.get('info')
+    response['realtime']['wid'] = realtime.get('wid')
+    response['realtime']['direct'] = realtime.get('direct')
+    response['realtime']['power'] = realtime.get('power')
+    response['realtime']['aqi'] = realtime.get('aqi')
 
-    print(response)
+    response['future'] = []
+    future_data = dict()
+    for v in future:
+        future_data['date'] = v.get('date')
+        future_data['temperature'] = v.get('temperature')
+        future_data['weather'] = v.get('weather')
+        future_data['direct'] = v.get('direct')
+    response['future'].append(future_data)
     return response
 
 def constellation(consName):
@@ -35,14 +43,12 @@ def constellation(consName):
     type = types[0]
     params = '?consName=%s&type=%s&key=%s' %(consName, type, key)
     url = api + params
-    print(url)
     response = requests.get(url, proxies=proxy.proxy())
     data = json.loads(response.content)
-    print(data['summary'])
     return {
         "name": consName,
         "text": data['summary']
     }
 
 if __name__ == "__main__":
-    data = constellation("白羊座")
+    data = weather("南山")

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class App(models.Model):
     appid = models.CharField(primary_key=True, max_length=32)
     category = models.CharField(max_length=128)
@@ -8,6 +9,7 @@ class App(models.Model):
     published_date = models.DateField()
     url = models.CharField(max_length=128)
     desc = models.TextField()
+
 
     def to_dict(self):
         return {

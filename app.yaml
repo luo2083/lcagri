@@ -15,12 +15,12 @@ published:
       desc: this is a image app.
 
   - app:
-      category: life
-      application: constellation
-      name: 星座运势
+      category: learning
+      application: get_ml
+      name: 机器学习识别病害
       published_date: 2020-11-10
-      url: /service/constellation
-      desc: this is a constellation app.
+      url: /ml/get_ml
+      desc: this is a machinelearning app.
 
   - app:
       category: life
