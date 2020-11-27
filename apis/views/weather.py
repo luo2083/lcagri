@@ -14,22 +14,36 @@ class WeatherView(View, CommonResponseMixin):
             open_id = request.session.get('open_id')
             user = User.objects.filter(open_id=open_id)[0]
             cities = json.loads(user.focus_cities)
-            data = []
-            for item in cities:
-                city = item.get('city')
-                response = juhe.weather(city)
-                data.append(response)
-            response = self.wrap_json_response(data=data, code=ReturnCode.SUCCESS)
-            return JsonResponse(data=response, safe=False)
+            response = []
+            for key in cities:
+                item = key.get('area')
+                item = item[:-1]
+                data = juhe.weather(item)
+                data['province'] = key.get('province')
+                data['city'] = key.get('city')
+                data['area'] = key.get('area')
+                response.append(data)
+            data = self.wrap_json_response(data=response)
+            print('Return get response is:', data)
+            return JsonResponse(data=data, safe=False)
 
     def post(self, request):
         received_body = request.body.decode('utf-8')
         received_body = json.loads(received_body)
+        print('Received_body is:', received_body)
         cities = received_body.get('cities')
+        print('Cities is: ', cities)
         data = []
-        for item in cities:
-            city = item.get('city')
-            response = juhe.weather(city)
+        for key in cities:
+            item = key.get('area')
+            item = item[:-1]
+            print('Return city is:', item)
+            response = juhe.weather(item)
+            print('Return response is: ',response)
+            response['province'] = key.get('province')
+            response['city'] = key.get('city')
+            response['area'] = key.get('area')
             data.append(response)
         data = self.wrap_json_response(data=data)
+        print('Return data is: ', data)
         return JsonResponse(data=data, safe=False)

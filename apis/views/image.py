@@ -46,9 +46,10 @@ class ImageView(View, CommonResponseMixin):
                 "name": key,
                 "md5": md5
             })
-
+        print('response is: ', response)
         message = 'post method success'
         response = self.wrap_json_response(data=response,code=ReturnCode.SUCCESS, message=message)
+
         return JsonResponse(data=response, safe=False)
 
 

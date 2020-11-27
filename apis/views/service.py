@@ -7,19 +7,18 @@ from thirdparty import juhe
 from utils.auth import already_authorized, get_user
 from utils.response import CommonResponseMixin, ReturnCode
 
-all_constellations = ['白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座']
+all_cropIds = ['水稻', '葡萄', '柑橘']
 all_jokes = []
-def constellation(request):
+def cropId(request):
     response = []
     if already_authorized(request):
         user = get_user(request)
-        constellations = json.loads(user.focus_constellations)
+        cropIds = json.loads(user.focus_cropIds)
+
     else:
-        constellations = all_constellations
-    for c in constellations:
-        data = juhe.constellation(c)
-        response.append(data)
-    response = CommonResponseMixin.wrap_json_response(data=response, code=ReturnCode.SUCCESS)
+        cropIds = all_cropIds
+
+    response = CommonResponseMixin.wrap_json_response(data=cropIds, code=ReturnCode.SUCCESS)
     return JsonResponse(data=response, safe=False)
 
 def joke(request):
