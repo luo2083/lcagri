@@ -3,7 +3,6 @@ import os
 import random
 from django.http import JsonResponse
 from backend import settings
-from thirdparty import juhe
 from utils.auth import already_authorized, get_user
 from utils.response import CommonResponseMixin, ReturnCode
 
