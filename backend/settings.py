@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authorization.apps.AuthorizationConfig',
     'apis.apps.ApisConfig',
-    'django_crontab',
+    # 'django_crontab',
     'ml.apps.MlConfig'
 ]
 
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
-    'module.middleware.StatisticsMiddleware',
+    # 'module.middleware.StatisticsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -148,75 +148,75 @@ USE_PROXY = False
 RESOURCES_DIR = os.path.join(BASE_DIR, 'resources')
 IMAGES_DIR = os.path.join(RESOURCES_DIR, 'images')
 WX_APP_SECRET = '291020312727f26c3b600caf1aa9cae4'
-LOG_DIR = os.path.join(BASE_DIR, 'log')
-if not os.path.exists(LOG_DIR):
-    os.mkdir(LOG_DIR)
-
-LOGGING = {
-    'version': 1,
-    'formatters': {
-        'standard': {
-            'format': '%(asctime)s [%(threadName)s: %(thread)d]''%(pathname)s:%(funcName)s:%(lineno)d %(levelname)s - %(message)s'
-        },
-        'simple': {
-            'format': '%(asctime)s %(message)s'
-        }
-    },
-    'filters': {
-        'test': {
-            '()': 'ops.TestFilter'
-        }
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'error_handler': {# error内容输出到另外的文件
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(LOG_DIR,'error.log'),#日志输出文件
-            'maxBytes':1024*1024*1,#文件大小
-            'backupCount': 5,#备份份数
-            'formatter':'standard',#使用哪种formatters日志格式
-            'encoding': 'utf8',
-        },
-        'file_handler': {# 记录到日志文件(需要创建对应的目录，否则会出错)
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(LOG_DIR,'service.log'),# 日志输出文件
-            'maxBytes':1024*1024*1,#文件大小
-            'backupCount': 5,#备份份数
-            'formatter':'standard',#使用哪种formatters日志格式
-            'encoding': 'utf8',
-        },
-        'console_handler':{# 输出到控制台
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'standard',
-        },
-        'statistics_handler':{
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(LOG_DIR,'statistics.log'),
-            'maxBytes':1024*1024*5,
-            'backupCount': 5,
-            'formatter':'simple',
-            'encoding': 'utf8',
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console_handler', 'file_handler'],
-            'filters': ['test'],
-            'level': 'DEBUG'
-        },
-        'statistics': {
-            'handlers': ['statistics_handler'],
-            'level': 'DEBUG'
-        }
-    }
-}
+# LOG_DIR = os.path.join(BASE_DIR, 'log')
+# if not os.path.exists(LOG_DIR):
+#     os.mkdir(LOG_DIR)
+#
+# LOGGING = {
+#     'version': 1,
+#     'formatters': {
+#         'standard': {
+#             'format': '%(asctime)s [%(threadName)s: %(thread)d]''%(pathname)s:%(funcName)s:%(lineno)d %(levelname)s - %(message)s'
+#         },
+#         'simple': {
+#             'format': '%(asctime)s %(message)s'
+#         }
+#     },
+#     'filters': {
+#         'test': {
+#             '()': 'ops.TestFilter'
+#         }
+#     },
+#     'handlers': {
+#         'null': {
+#             'level': 'DEBUG',
+#             'class': 'logging.NullHandler',
+#         },
+#         'error_handler': {# error内容输出到另外的文件
+#             'level':'DEBUG',
+#             'class':'logging.handlers.RotatingFileHandler',
+#             'filename': os.path.join(LOG_DIR,'error.log'),#日志输出文件
+#             'maxBytes':1024*1024*1,#文件大小
+#             'backupCount': 5,#备份份数
+#             'formatter':'standard',#使用哪种formatters日志格式
+#             'encoding': 'utf8',
+#         },
+#         'file_handler': {# 记录到日志文件(需要创建对应的目录，否则会出错)
+#             'level':'DEBUG',
+#             'class':'logging.handlers.RotatingFileHandler',
+#             'filename': os.path.join(LOG_DIR,'service.log'),# 日志输出文件
+#             'maxBytes':1024*1024*1,#文件大小
+#             'backupCount': 5,#备份份数
+#             'formatter':'standard',#使用哪种formatters日志格式
+#             'encoding': 'utf8',
+#         },
+#         'console_handler':{# 输出到控制台
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'standard',
+#         },
+#         'statistics_handler':{
+#             'level':'DEBUG',
+#             'class':'logging.handlers.RotatingFileHandler',
+#             'filename': os.path.join(LOG_DIR,'statistics.log'),
+#             'maxBytes':1024*1024*5,
+#             'backupCount': 5,
+#             'formatter':'simple',
+#             'encoding': 'utf8',
+#         }
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console_handler', 'file_handler'],
+#             'filters': ['test'],
+#             'level': 'DEBUG'
+#         },
+#         'statistics': {
+#             'handlers': ['statistics_handler'],
+#             'level': 'DEBUG'
+#         }
+#     }
+# }
 
 CACHES = {
     'default': {

@@ -36,19 +36,6 @@ def weather(city):
     response['future'].append(future_data)
     return response
 
-def constellation(consName):
-    key = 'fed29157ba4d3fb9aec2f0625d07838d'
-    api = 'http://web.juhe.cn:8080/constellation/getAll'
-    types = ('today','tomorrow','week','month','year')
-    type = types[0]
-    params = '?consName=%s&type=%s&key=%s' %(consName, type, key)
-    url = api + params
-    response = requests.get(url, proxies=proxy.proxy())
-    data = json.loads(response.content)
-    return {
-        "name": consName,
-        "text": data['summary']
-    }
 
 if __name__ == "__main__":
     data = weather("南山")
