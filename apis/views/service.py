@@ -10,7 +10,6 @@ from utils.response import CommonResponseMixin, ReturnCode
 all_cropIds = ['水稻', '葡萄', '柑橘']
 all_jokes = []
 def cropId(request):
-    response = []
     if already_authorized(request):
         user = get_user(request)
         cropIds = json.loads(user.focus_cropIds)
