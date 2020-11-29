@@ -33,7 +33,7 @@ def weather(city):
         future_data['temperature'] = v.get('temperature')
         future_data['weather'] = v.get('weather')
         future_data['direct'] = v.get('direct')
-    response['future'].append(future_data)
+        response['future'].append(future_data)
     return response
 
 
