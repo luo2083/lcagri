@@ -28,12 +28,13 @@ def weather(city):
 
     response['future'] = []
     future_data = dict()
-    for v in future:
-        future_data['date'] = v.get('date')
-        future_data['temperature'] = v.get('temperature')
-        future_data['weather'] = v.get('weather')
-        future_data['direct'] = v.get('direct')
+    for k in range(len(future)):
+        future_data['date'] = future[k].get('date')
+        future_data['temperature'] = future[k].get('temperature')
+        future_data['weather'] = future[k].get('weather')
+        future_data['direct'] = future[k].get('direct')
         response['future'].append(future_data)
+    print('juhe return response is: ', response)
     return response
 
 
